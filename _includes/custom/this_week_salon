@@ -15,56 +15,44 @@ Usage:
     
   This helper can be seen in use at: ../_layouts/blog_sidebar.html
 -->{% endcomment %}
+<ul class="nav nav-tabs">
 {% assign count = '0' %}
 {% assign idx = '0' %}
 {% for post in site.posts %}
   {% if post.series == 'salon-foreshow' %}
     {% capture count %}{{ count | plus: '1' }}{% endcapture %}
-    {% if idx < 3 %}
-      <li class="active"><a data-toggle="tab" href="#tab_1_1">{{ post.title }}</a></li>
+    {% if idx < '2' %}
+      {% if idx == '0' %}
+      <li class="active"><a data-toggle="tab" href="#tab_1_{{ idx }}">{{ post.title }}</a></li>
+      {% else %}
+      <li><a data-toggle="tab" href="#tab_1_{{ idx }}">{{ post.title }}</a></li>    
+      {% endif %}
+      {% capture idx %}{{count}}{% endcapture %}
+    {% endif %}
+  {% endif %}
+{% endfor %}  
+</ul>
+<div class="tab-content">
+{% assign count = '0' %}
+{% assign idx = '0' %}
+{% for post in site.posts %}
+  {% if post.series == 'salon-foreshow' %}
+    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
+    {% if idx < '2' %}
+      {% if idx == '0' %}
+      <div id="tab_1_{{ idx }}" class="tab-pane active">
+      {% else %}
+      <div id="tab_1_{{ idx }}" class="tab-pane">
+      {% endif %}
+        <p><a href="{{ post.url }}">{{ post.title }}</a></p>
+        <p>
+          {{ post.excerpt }}
+        </p>
+      </div>
       {% capture idx %}{{count}}{% endcapture %}
     {% endif %}
   {% endif %}
 {% endfor %}
-
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
-  <li ><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
-</ul>
-<div class="tab-content">
-  <div id="tab_1_1" class="tab-pane active">
-    <p>I'm in Section 1.</p>
-    <p>
-      Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
-    </p>
-  </div>
-  <div id="tab_1_2" class="tab-pane">
-    <p>Howdy, I'm in Section 2.</p>
-    <p>
-      Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-    </p>
-  </div>
 </div>
-
-
-<div class="seriesNote">
-  <p>This article is <strong>Part {{ idx }}</strong> in a <strong>{{ count }}-Part</strong> Series.</p>
-  <ul>
-  {% assign count = '0' %}
-  {% for post in site.posts reversed %}
-  {% if post.series == series %}
-    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
-    <li>Part {{ count }} - 
-    {% if page.url == post.url %}
-      This Article
-    {% else %}
-      <a href="{{post.url}}">{{post.title}}</a>
-    {% endif %}
-    </li>
-  {% endif %}
-  {% endfor %}
-  </ul>
-</div>
-
 {% assign count = nil %}
 {% assign idx = nil %}
