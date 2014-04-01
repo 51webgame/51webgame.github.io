@@ -1,0 +1,67 @@
+<div class="">
+    <ul class="nav nav-tabs">
+    {% assign idx = '0' %}
+    {% for category in site.categories %}
+    {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+    {% if idx < '6' %}
+      {% if idx == '1' %}
+      <li class="active"><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
+     {% else %}
+      <li><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
+     {% endif %}
+    {% else %}
+        {% if idx == '6' %}
+          <li class="dropdown">
+            <a href="#"  class="dropdown-toggle" data-toggle="dropdown">更多 <i class="fa fa-angle-down"></i></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="#{{ category[0] }}-ref" tabindex="" data-toggle="tab">{{ category[0] | join: "/" }}</a> </li>
+        {% else %}
+                  <li><a href="#{{ category[0] }}-ref" tabindex="" data-toggle="tab">{{ category[0] | join: "/" }}</a></li>
+        {% endif %}
+        {% if idx == site.categories.size %}
+          </ul></li>       
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+    </ul>
+    <div class="tab-content">
+    {% assign idx = '0' %}
+    {% for category in site.categories %} 
+      {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+      {% if idx == '1' %}
+      <div id="{{ category[0] }}-ref" class="tab-pane in active">
+      {% else %}
+      <div id="{{ category[0] }}-ref" class="tab-pane fade">
+      {% endif %}
+          <div class="row search-form-default">
+            <div class="col-md-12">
+              <form class="form-inline" action="#">
+                <div class="input-group">
+                  <div class="input-cont">   
+                    <input type="text" placeholder="Search..." class="form-control" />
+                  </div>
+                  <span class="input-group-btn">
+                  <button type="button" class="btn green">
+                  Search &nbsp; 
+                  <i class="m-icon-swapright m-icon-white"></i>
+                  </button>
+                  </span>    
+                </div>
+              </form>
+            </div>
+          </div>
+          {% assign post_list = category[1] %}
+          {% for node in post_list %}
+            {% if node.title != null %}
+            <div class="search-classic">
+              {% if group == null or group == node.group %}
+                <h4><a href="{{ BASE_PATH }}{{ node.url }}">{{ node.title }}</a></h4>
+                <p>{{ node.excerpt }}</p>
+              {% endif %}
+            {% endif %}
+            </div>
+          {% endfor %}
+      </div>
+    {% endfor %}
+    </div>
+</div>
