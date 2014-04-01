@@ -1,0 +1,70 @@
+{% comment %}<!--
+The this_week_salon include is a listing salon action of this week
+Usage:
+  1) assign the 'salon_list' variable to a valid array of tags.
+  2) include custom/this_week_salon
+  example:
+    <ul>
+  	  {% include custom/blog_categories_list %}
+  	</ul>
+  
+  Notes: 
+    Categories can be either a Hash of Category objects (hashes) or an Array of category-names (strings).
+    The encapsulating 'if' statement checks whether categories_list is a Hash or Array.
+    site.categories is a Hash while page.categories is an array.
+    
+  This helper can be seen in use at: ../_layouts/blog_sidebar.html
+-->{% endcomment %}
+{% assign count = '0' %}
+{% assign idx = '0' %}
+{% for post in site.posts %}
+  {% if post.series == 'salon-foreshow' %}
+    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
+    {% if idx < 3 %}
+      <li class="active"><a data-toggle="tab" href="#tab_1_1">{{ post.title }}</a></li>
+      {% capture idx %}{{count}}{% endcapture %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
+  <li ><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
+</ul>
+<div class="tab-content">
+  <div id="tab_1_1" class="tab-pane active">
+    <p>I'm in Section 1.</p>
+    <p>
+      Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+    </p>
+  </div>
+  <div id="tab_1_2" class="tab-pane">
+    <p>Howdy, I'm in Section 2.</p>
+    <p>
+      Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+    </p>
+  </div>
+</div>
+
+
+<div class="seriesNote">
+  <p>This article is <strong>Part {{ idx }}</strong> in a <strong>{{ count }}-Part</strong> Series.</p>
+  <ul>
+  {% assign count = '0' %}
+  {% for post in site.posts reversed %}
+  {% if post.series == series %}
+    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
+    <li>Part {{ count }} - 
+    {% if page.url == post.url %}
+      This Article
+    {% else %}
+      <a href="{{post.url}}">{{post.title}}</a>
+    {% endif %}
+    </li>
+  {% endif %}
+  {% endfor %}
+  </ul>
+</div>
+
+{% assign count = nil %}
+{% assign idx = nil %}

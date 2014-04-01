@@ -1,0 +1,80 @@
+<div class="col-md-3 blog-sidebar">
+  <h3>Flickr</h3>
+  <ul class="list-inline blog-images">
+    <li>
+      <a  class="fancybox-button" data-rel="fancybox-button" title="390 x 220 - keenthemes.com" href="{{ ASSET_PATH }}/img/blog/1.jpg">
+      <img alt="" src="{{ ASSET_PATH }}/img/blog/1.jpg">
+      </a>
+    </li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/2.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/3.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/4.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/5.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/6.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/8.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/10.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/11.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/1.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/2.jpg"></a></li>
+    <li><a href="#"><img alt="" src="{{ ASSET_PATH }}/img/blog/7.jpg"></a></li>
+  </ul>
+  <div class="space20"></div>
+  <h3 class="block">分类</h3>
+  <ul class="list-group">
+    {% assign categories_list = site.categories %}
+    {% include custom/blog_categories_list %}
+  </ul>
+  <div class="space20"></div>
+  <h3>标签</h3>
+  <ul class="list-inline sidebar-tags">
+    {% assign tags_list = site.tags %}
+    {% include custom/blog_tags_list %}
+  </ul>
+  <div class="space20"></div>
+  <h3>公告</h3>
+  <div class="tabbable tabbable-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#tab_1_1">Section 1</a></li>
+      <li ><a data-toggle="tab" href="#tab_1_2">Section 2</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="tab_1_1" class="tab-pane active">
+        <p>I'm in Section 1.</p>
+        <p>
+          Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+        </p>
+      </div>
+      <div id="tab_1_2" class="tab-pane">
+        <p>Howdy, I'm in Section 2.</p>
+        <p>
+          Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="space20"></div>
+  <h3>Recent Twitts</h3>
+  <div class="blog-twitter">
+    <div class="blog-twitter-block">
+      <a href="">@keenthemes</a> 
+      <p>At vero eos et accusamus et iusto odio.</p>
+      <a href="#"><em>http://t.co/sBav7dm</em></a> 
+      <span>5 hours ago</span>
+      <i class="fa fa-twitter blog-twiiter-icon"></i>
+    </div>
+    <div class="blog-twitter-block">
+      <a href="">@keenthemes</a> 
+      <p>At vero eos et accusamus et iusto odio.</p>
+      <a href="#"><em>http://t.co/sBav7dm</em></a> 
+      <span>7 hours ago</span>
+      <i class="fa fa-twitter blog-twiiter-icon"></i>
+    </div>
+    <div class="blog-twitter-block">
+      <a href="">@keenthemes</a> 
+      <p>At vero eos et accusamus et iusto odio.</p>
+      <a href="#"><em>http://t.co/sBav7dm</em></a> 
+      <span>8 hours ago</span>
+      <i class="fa fa-twitter blog-twiiter-icon"></i>
+    </div>
+  </div>
+</div>

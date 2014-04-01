@@ -25,7 +25,11 @@ author :
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://username.github.io
+production_url : http://51webgame.github.io
+paginate: 5
+paginate_path: "blog/page:num"
+
+excerpt_separator: <!--more-->
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -117,6 +121,7 @@ JB :
   sharing :
     provider : false
     
+  web_safe_color: [blue,red,green,purple,yellow]
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:
   #

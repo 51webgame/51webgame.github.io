@@ -1,0 +1,33 @@
+{% comment %}<!--
+The blog_categories_list include is a listing helper for categories.
+Usage:
+  1) assign the 'categories_list' variable to a valid array of tags.
+  2) include custom/blog_categories_list
+  example:
+    <ul>
+  	  {% assign categories_list = site.categories %}  
+  	  {% include custom/blog_categories_list %}
+  	</ul>
+  
+  Notes: 
+    Categories can be either a Hash of Category objects (hashes) or an Array of category-names (strings).
+    The encapsulating 'if' statement checks whether categories_list is a Hash or Array.
+    site.categories is a Hash while page.categories is an array.
+    
+  This helper can be seen in use at: ../_layouts/blog_sidebar.html
+-->{% endcomment %}
+  {% if categories_list.first[0] == null %}
+    {% for category in categories_list %} 
+      {{ forloop.index }}
+      <li class="list-group-item bg-{% cycle 'blue','red','green','purple','yellow' %}"><a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category }}-ref">
+        {{ category | join: "/" }} </a><span class="badge badge-default">{{ site.categories[category].size }}</span>
+      </li>
+    {% endfor %}
+  {% else %}
+    {% for category in categories_list %}
+      <li class="list-group-item bg-{% cycle 'blue','red','green','purple','yellow' %}"><a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category[0] }}-ref">
+        {{ category[0] | join: "/" }} </a><span class="badge badge-default">{{ category[1].size }}</span>
+      </li>
+    {% endfor %}
+  {% endif %}
+{% assign categories_list = nil %}

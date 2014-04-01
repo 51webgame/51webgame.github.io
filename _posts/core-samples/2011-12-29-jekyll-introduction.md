@@ -1,14 +1,15 @@
 ---
 layout: post
-category : lessons
+category : 'Jekyll教学'
 tagline: "Supporting tagline"
 tags : [intro, beginner, jekyll, tutorial]
+thumbnail: "/assets/themes/metronic/img/gallery/item_img.jpg"
 ---
 {% include JB/setup %}
 
 This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
 Directly following the intro we'll learn exactly _how_ Jekyll does what it does.
-
+<!--more-->
 ## Overview
 
 ### What is Jekyll?
@@ -19,7 +20,6 @@ dynamic components such as templates, partials, liquid code, markdown, etc. Jeky
 ### Examples
 
 This website is created with Jekyll. [Other Jekyll websites](https://github.com/mojombo/jekyll/wiki/Sites).
-
 
 
 ### What does Jekyll Do?
