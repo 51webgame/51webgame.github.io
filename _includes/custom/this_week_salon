@@ -16,30 +16,27 @@ Usage:
   This helper can be seen in use at: ../_layouts/blog_sidebar.html
 -->{% endcomment %}
 <ul class="nav nav-tabs">
-{% assign count = '0' %}
 {% assign idx = '0' %}
 {% for post in site.posts %}
   {% if post.series == 'salon-foreshow' %}
-    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
-    {% if idx < '2' %}
-      {% if idx == '0' %}
-      <li class="active"><a data-toggle="tab" href="#tab_1_{{ idx }}">{{ post.title }}</a></li>
+    {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+    {% if idx <= '2' %}
+      {% if idx == '1' %}
+      <li class="active"><a data-toggle="tab" href="#tab_1_{{ idx }}">沙龙{{ idx }}</a></li>
       {% else %}
-      <li><a data-toggle="tab" href="#tab_1_{{ idx }}">{{ post.title }}</a></li>    
+      <li><a data-toggle="tab" href="#tab_1_{{ idx }}">沙龙{{ idx }}</a></li>    
       {% endif %}
-      {% capture idx %}{{count}}{% endcapture %}
     {% endif %}
   {% endif %}
 {% endfor %}  
 </ul>
 <div class="tab-content">
-{% assign count = '0' %}
 {% assign idx = '0' %}
 {% for post in site.posts %}
   {% if post.series == 'salon-foreshow' %}
-    {% capture count %}{{ count | plus: '1' }}{% endcapture %}
-    {% if idx < '2' %}
-      {% if idx == '0' %}
+    {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+    {% if idx <= '2' %}
+      {% if idx == '1' %}
       <div id="tab_1_{{ idx }}" class="tab-pane active">
       {% else %}
       <div id="tab_1_{{ idx }}" class="tab-pane">
@@ -49,7 +46,6 @@ Usage:
           {{ post.excerpt }}
         </p>
       </div>
-      {% capture idx %}{{count}}{% endcapture %}
     {% endif %}
   {% endif %}
 {% endfor %}
