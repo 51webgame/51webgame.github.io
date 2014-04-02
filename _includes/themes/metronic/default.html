@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>{{ page.title }}</title>
+  <title>{{ page.title }} －－ 51webgame技术沙龙</title>
   {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
   <meta name="author" content="{{ site.author.name }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,8 +54,13 @@
           <ul class="nav navbar-nav">
             {% assign pages_list = site.pages %}
             {% assign group = 'navigation' %}
-            {% include JB/pages_list %}
-            <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}">文章列表</a></li>
+            {% include custom/pages_list %}
+            {% capture paginate_path %}{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}{% endcapture %}
+            {% if page.url contains paginate_path  %}
+            <li class="active open"><a href="{{ paginate_path }}" class="active">文章列表</a></li>
+            {% else %}
+            <li><a href="{{ paginate_path }}">文章列表</a></li>
+            {% endif %}
           </ul>
       </div>
       <!-- END HORIZANTAL MENU -->
@@ -72,10 +77,15 @@
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
       <ul class="page-sidebar-menu visible-sm visible-xs">
-          {% assign pages_list = site.pages %}
+          {% capture pages_list %}{{ site.pages | sort: 'descadeing' }} {% endcapture %}
           {% assign group = 'navigation' %}
-          {% include JB/pages_list %}
-          <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}">文章列表</a></li>
+          {% include custom/pages_list %}
+          {% capture paginate_path %}{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}{% endcapture %}
+          {% if page.url contains paginate_path  %}
+          <li class="active open"><a href="{{ paginate_path }}" class="active">文章列表</a></li>
+          {% else %}
+          <li><a href="{{ paginate_path }}">文章列表</a></li>
+          {% endif %}
       </ul>
     </div>
     <!-- BEGIN PAGE -->

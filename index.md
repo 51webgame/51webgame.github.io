@@ -2,6 +2,7 @@
 layout: promo
 title: "首页"
 group: navigation
+weight: 1
 ---
 {% include JB/setup %}
 <div class="col-md-5 margin-bottom-20">

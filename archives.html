@@ -1,11 +1,11 @@
 ---
 layout: page
-title : "文章归档"
+title : "时间线"
 header : Post Archive
 group: navigation
+weight: 4
 ---
 {% include JB/setup %}
-<!--https://docs.google.com/spreadsheet/pub?key=0AoBfTlhssqnidEtBSjJ4ZHpqNFBudTRYbFVYOUhkTWc&amp;output=html-->
 {% assign posts_collate = site.posts %}
 {% assign timeline_config = '{ width: "100%", height: "520", start_at_end: false, source: "/archives/" }' %}
 {% include custom/posts_timeline %}
