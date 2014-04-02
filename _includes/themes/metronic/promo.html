@@ -3,20 +3,26 @@
 <div class="promo-page">
 	<!-- BEGIN PAGE CONTENT-->
 	<div class="block-carousel">
-		<div id="promo_carousel" class="carousel slide">
+		<div id="promo_carousel" class="carousel slide" style="min-height:470px">
 			<div class="container">
 				<div class="carousel-inner">
-					{% for post in site.posts reserved limit:3 %}
-				    <div class="item{% if forloop.first %} active{% endif %}">
+					{% assign idx = '0' %}
+					{% for post in site.posts reserved %}
+					{% if post.series == null %}
+					{% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+					{% if idx <= '3' %}
+				    <div class="item {% cycle 'active','','' %}">
 				      	<div class="row">
-							<div class="{% cycle 'col-md-7','col-md-5' %} margin-bottom-20 margin-top-20 animated {% cycle 'rotateInUpRight','rotateInUpLeft' %}">
+				      		{% capture num %}{% cycle 'odd','even' %}{% endcapture %}
+				      		{% if num == 'odd' %}
+							<div class="col-md-7 margin-bottom-20 margin-top-20 animated rotateInUpRight">
 								<h1>{{ post.title }}</h1>
 								<p>{{ post.excerpt }}</p>
 								<a href="{{ post.url }}" class="btn red btn-lg m-icon-big">
 								阅读全文 <i class="m-icon-big-swapright m-icon-white"></i>                                
 								</a>
 							</div>
-							<div class="{% cycle 'col-md-5','col-md-7' %} animated {% cycle 'rotateInUpLeft','rotateInUpRight' %}">
+							<div class="col-md-5 animated rotateInUpLeft">
 								<a href="{{ post.url }}">
 								{% if post.thumbnail %}
 						          <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
@@ -25,8 +31,28 @@
 						        {% endif %}
 								</a>
 							</div>
+							{% else %}
+							<div class="col-md-5 animated rotateInUpRight">
+								<a href="{{ post.url }}">
+								{% if post.thumbnail %}
+						          <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
+						        {% else %}
+						          <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu1.jpg','kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						        {% endif %}
+								</a>
+							</div>
+							<div class="col-md-7 margin-bottom-20 margin-top-20 animated rotateInUpLeft">
+								<h1>{{ post.title }}</h1>
+								<p>{{ post.excerpt }}</p>
+								<a href="{{ post.url }}" class="btn red btn-lg m-icon-big">
+								阅读全文 <i class="m-icon-big-swapright m-icon-white"></i>                                
+								</a>
+							</div>
+							{% endif %}
 						</div>
 					</div>
+					{% endif %}
+					{% endif %}
 				    {% endfor %}
 				</div>
 				<a class="carousel-control left" href="#promo_carousel" data-slide="prev">
@@ -44,64 +70,77 @@
 			</div>
 		</div>
 	</div>
-	<div class="block-yellow">
+	<div class="block-transparent">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5 margin-bottom-20">
-					<a href="index.html"><img src="{{ ASSET_PATH }}/img/pages/img2.png" alt="" class="img-responsive"></a>
-				</div>
-				<div class="col-md-7">
-					<h2>Metronic viverra vehicula sem ut volutpat</h2>
-					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-					<p>Lunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-					<a href="index.html" class="btn blue btn-lg m-icon-big">
-					Learn more
-					<i class="m-icon-big-swapright m-icon-white"></i>                                
-					</a>
-				</div>
+			{{ content }}
 			</div>
 		</div>
 	</div>
 	<div class="block-transparent">
 		<div class="container">
-			<div class="row margin-bottom-20">
-				<div class="col-md-6 margin-bottom-20">
-					<h2>Metronic Viverra</h2>
-					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos <a href="#">ellentesque la vehi</a> dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-					<p>Lunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita <a href="#">distinctio lorem ipsum dolor</a> sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
+			<h2>本期沙龙</h2>
+			{% assign idx = '0' %}
+			{% for post in site.posts reserved %}
+			{% if post.series %}
+				{% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+				{% if idx <= '2' %}
+				<div class="row {% cycle 'margin-bottom-20','' %}">
+					{% capture num %}{% cycle 'odd','even' %}{% endcapture %}
+				    {% if num == 'odd' %}
+					<div class="col-md-6 margin-bottom-20">
+						<h2>{{ post.title }}</h2>
+						<p>{{ post.excerpt }}</p>
+						<a href="{{ post.url }}" class="btn blue btn-lg m-icon-big">
+						查看详情
+						<i class="m-icon-big-swapright m-icon-white"></i>                                
+						</a>
+					</div>
+					<div class="col-md-6 margin-bottom-20">
+						<a href="{{ post.url }}">
+						{% if post.thumbnail %}
+						    <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
+						{% else %}
+						    <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						{% endif %}</a>
+					</div>
+					{% else %}
+					<div class="col-md-6 margin-bottom-20">
+						<a href="{{ post.url }}">
+						{% if post.thumbnail %}
+						    <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
+						{% else %}
+						    <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						{% endif %}</a>
+					</div>
+					<div class="col-md-6 margin-bottom-20">
+						<h2>{{ post.title }}</h2>
+						<p>{{ post.excerpt }}</p>
+						<a href="{{ post.url }}" class="btn blue btn-lg m-icon-big">
+						查看详情
+						<i class="m-icon-big-swapright m-icon-white"></i>                                
+						</a>
+					</div>
+					{% endif %}
 				</div>
-				<div class="col-md-6 margin-bottom-20">
-					<a href="index.html"><img src="{{ ASSET_PATH }}/img/pages/img3.png" alt="" class="img-responsive"></a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<a href="index.html"><img src="{{ ASSET_PATH }}/img/pages/img4.png" alt="" class="img-responsive"></a>
-				</div>
-				<div class="col-md-6 margin-bottom-20">
-					<h2>Vero eos iusto odio..</h2>
-					<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et <a href="#">quas molestias excepturi sint</a> occaecati cupiditate non provident, similique. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-					<p>Lunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et <a href="#">quam lacus eusce condimentum </a> eleifend enim a feugiat.</p>
-				</div>
-			</div>
+				{% endif %}
+			{% endif %}
+			{% endfor %}
 			<hr>
+			<h4>往期回顾</h4>
 			<div class="row">
-				<div class="col-md-3">
-					<h3><a href="#">Consectetur adipiscing</a></h3>
-					<p>Pellentesque viverra vehicula sem ut volutpat dosum molor sit amet, consectetur adipiscing elit</p>
-				</div>
-				<div class="col-md-3">
-					<h3><a href="#">Ut volutpat dosum</a></h3>
-					<p>Lunt in lpa qui officia deserunt mollitia mo animi, asdid leoff iscia est labor le harum quidem rerum facilis</p>
-				</div>
-				<div class="col-md-3">
-					<h3><a href="#">Viverra de esque</a></h3>
-					<p>Volutpat dosum esque viverra ved et quam lacusehicula sem ut  molorviverra sit amet, consetetur edipiscin la</p>
-				</div>
-				<div class="col-md-3">
-					<h3><a href="#">Sem ut volutpat dum</a></h3>
-					<p>Deleniti atque corrupa vehicula sem ut volutpat dosum molor sit amet, consectetur adipiscing praesentium</p>
-				</div>
+				{% assign idx = '0' %}
+				{% for post in site.posts reserved %}
+				{% if post.series && post.series == 'salon-foreshow' %}
+				{% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
+					{% if idx > '2' && idx <= '6' %}
+					<div class="col-md-3">
+						<h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+						<p>{{ post.excerpt }}</p>
+					</div>
+					{% endif %}
+				{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 	</div>

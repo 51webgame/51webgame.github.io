@@ -6,7 +6,7 @@
         {% if post.thumbnail %}
           <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
         {% else %}
-          <img src="/assets/themes/metronic/img/webgame.png" class="img-responsive" alt="{{ post.title }}">
+          <img src="{{ BASE_PATH }}/assets/resources/kongfu{% cycle '1','2','3','4','6','7','8','9','10' %}.jpg" class="img-responsive" alt="{{ post.title }}">
         {% endif %}
         <ul class="list-inline">
           <li><i class="fa fa-calendar"></i> <a href="#">{{ post.date | date_to_long_string }}</a></li>
