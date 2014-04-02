@@ -1,14 +1,14 @@
 <div class="tabbable tabbable-custom tabbable-full-width">
     <ul class="nav nav-tabs">
     {% assign idx = '0' %}
-    {% capture cate_size %}{{ site.categories | size }}{% endcapture %}
-    {% for category in site.categories %}
+    {% capture tag_size %}{{ site.tags | size }}{% endcapture %}
+    {% for tag in site.tags %}
     {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
     {% if idx < '5' %}
         {% if idx == '1' %}
-          <li class="active"><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
+          <li class="active"><a data-toggle="tab" href="#{{ tag[0] }}-ref">{{ tag[0] | join: "/" }}</a></li>
         {% else %}
-          <li><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
+          <li><a data-toggle="tab" href="#{{ tag[0] }}-ref">{{ tag[0] | join: "/" }}</a></li>
         {% endif %}
     {% else %}
         {% if idx == '5' %}
@@ -16,8 +16,8 @@
             <a href="javascript:void"  class="dropdown-toggle" data-toggle="dropdown">更多分类<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu" role="menu">
         {% endif %}
-                <li><a href="#{{ category[0] }}-ref" tabindex="-1" data-toggle="tab">{{ category[0] | join: "/" }}</a></li>
-        {% if idx == cate_size %}
+                <li><a href="#{{ tag[0] }}-ref" tabindex="-1" data-toggle="tab">{{ tag[0] | join: "/" }}</a></li>
+        {% if idx == tag_size %}
               </ul>
           </li>       
         {% endif %}
@@ -26,14 +26,14 @@
     </ul>
     <div class="tab-content">
     {% assign idx = '0' %}
-    {% for category in site.categories %} 
+    {% for tag in site.tags %} 
       {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
       {% if idx == '1' %}
-      <div id="{{ category[0] }}-ref" class="tab-pane in active">
+      <div id="{{ tag[0] }}-ref" class="tab-pane in active">
       {% else %}
-      <div id="{{ category[0] }}-ref" class="tab-pane fade">
+      <div id="{{ tag[0] }}-ref" class="tab-pane fade">
       {% endif %}
-          {% assign post_list = category[1] %}
+          {% assign post_list = tag[1] %}
           {% for node in post_list %}
             {% if node.title != null %}
             <div class="search-classic">

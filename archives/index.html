@@ -1,0 +1,20 @@
+---
+layout: json
+---
+{
+    "timeline":
+    {
+        "headline":"51游戏页游技术沙龙交流论坛",
+        "type":"default",
+        "text":"<p>隐于形,沉于心</p>",
+        "asset": {
+            "media":"/assets/resources/jjwx.jpg",
+            "credit":"51webgame",
+            "caption":"51页游事业部,致力打造超级好玩的精品游戏"
+        },
+        "date": [
+{% assign posts_collate = site.posts %}
+{% include custom/blog_timeline_json %}
+        ]
+    }
+}

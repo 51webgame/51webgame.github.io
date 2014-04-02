@@ -1,0 +1,44 @@
+{% comment %}<!--
+The timelineJS include is a timeline slider helper.
+Usage:
+  1) assign the 'timeline_config' variable to the timelineJS config arguments
+  2) include JB/timelineJS
+  example:
+    <ul>
+  	  {% assign timeline_config = '{ width: "100%", height: "620", start_at_end: true, source: "path_to_json" }' %}
+  	  {% include JB/timelineJS %}
+  	</ul>
+  	
+  FileSource: (optional): 
+  	assign the 'source_file' variable to path_to_json
+  	
+    This helper can be seen in use at: ../archives.html
+-->{% endcomment %}
+
+
+{% if timeline_config %}
+  <div id="timeline-embed"> </div>
+    <script type="text/javascript">
+    try{
+      var cus_config = {{ timeline_config }};
+    }catch(e){
+      console.log('timeline-config error');
+      var cus_config = { width: "100%", height: "550", start_at_end: true, source: "" };
+    }
+      var timeline_config = {
+       width: (cus_config.width ? cus_config.width : "100%"),
+       height: (cus_config.height ? cus_config.height : "550"),
+       hash_bookmark: true,
+       start_at_end: (cus_config.start_at_end ? cus_config.start_at_end : true),
+       start_zoom_adjust: 1,
+       lang: 'zh-cn',
+       font: (cus_config.font ? cus_config.font : 'SansitaOne-Kameron'),
+       source: (cus_config.source ? cus_config.source : "{{ source_file }}"),
+       embed_id: 'timeline-embed',
+       css: '{{ BASE_PATH }}/assets/themes/metronic/plugins/timeline/css/timeline.css',
+       js:  '{{ BASE_PATH }}/assets/themes/metronic/plugins/timeline/js/timeline-min.js'
+      }
+    </script>
+{% endif %}
+{% assign timeline_config = nil %}
+{% assign source_file = nil %}

@@ -1,0 +1,36 @@
+{% comment %}<!--
+The blog_timeline_json include is a json format data of this blog list
+Usage:
+  1) assign the 'posts_collate' variable to a valid array of tags.
+  2) include custom/blog_timeline_json
+  example:
+    "data":[
+  	  {% include custom/blog_timeline_json %}
+  	]
+    
+  This helper can be seen in use at: /archives/index.html
+-->{% endcomment %}
+{% for post in posts_collate  %}
+            {
+                "startDate":"{{ post.date | date: "%Y,%m,%d" }}",
+                "endDate":"{{ post.date | date: "%Y,%m" }}",
+                "headline":"{{ post.title }}",
+                "text":"<p>{{ post.excerpt }}</p>",
+                "asset": {
+                    {% if post.thumbnail %}
+                    "media":"{{ post.thumbnail }}",
+                    {% endif %}
+                    {% if post.header %}
+                    "credit":"{{ post.header }}",
+                    {% endif %}
+                    {% if post.tagline %}
+                    "caption":"{{ post.tagline }}"
+                    {% endif %}
+                }
+        {% if forloop.last %}
+            }
+        {% else %}
+            },
+        {% endif %}
+{% endfor %}
+{% assign post_collate = nil %}
