@@ -77,7 +77,7 @@
     <!-- BEGIN EMPTY PAGE SIDEBAR -->
     <div class="page-sidebar navbar-collapse collapse">
       <ul class="page-sidebar-menu visible-sm visible-xs">
-          {% capture pages_list %}{{ site.pages | sort: 'descadeing' }} {% endcapture %}
+          {% assign pages_list = site.pages %}
           {% assign group = 'navigation' %}
           {% include custom/pages_list %}
           {% capture paginate_path %}{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}{% endcapture %}
