@@ -1,23 +1,20 @@
 <div class="tabbable tabbable-custom tabbable-full-width">
     <ul class="nav nav-tabs">
-    {% assign idx = '0' %}
-    {% capture cate_size %}{{ site.categories | size }}{% endcapture %}
     {% for category in site.categories %}
-    {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
-    {% if idx < '5' %}
-        {% if idx == '1' %}
+    {% if forloop.index < 5 %}
+        {% if forloop.first %}
           <li class="active"><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
         {% else %}
           <li><a data-toggle="tab" href="#{{ category[0] }}-ref">{{ category[0] | join: "/" }}</a></li>
         {% endif %}
     {% else %}
-        {% if idx == '5' %}
+        {% if forloop.index == 5 %}
           <li class="dropdown">
             <a href="javascript:void"  class="dropdown-toggle" data-toggle="dropdown">更多分类<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu" role="menu">
         {% endif %}
                 <li><a href="#{{ category[0] }}-ref" tabindex="-1" data-toggle="tab">{{ category[0] | join: "/" }}</a></li>
-        {% if idx == cate_size %}
+        {% if forloop.last %}
               </ul>
           </li>       
         {% endif %}
@@ -25,14 +22,33 @@
     {% endfor %}
     </ul>
     <div class="tab-content">
-    {% assign idx = '0' %}
     {% for category in site.categories %} 
-      {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
-      {% if idx == '1' %}
+      {% if forloop.first %}
       <div id="{{ category[0] }}-ref" class="tab-pane in active">
       {% else %}
       <div id="{{ category[0] }}-ref" class="tab-pane fade">
       {% endif %}
+          <div class="row search-form-default">
+              <div class="col-md-12">
+                <form class="form-inline" name="f1" onsubmit="return g(this)">
+                  <div class="input-group">
+                    <div class="input-cont">   
+                      <input name=word size="30" maxlength="100" type="text" placeholder="Search..." class="form-control" />
+                      <input name=tn type=hidden value="bds" class="hidden">
+                      <input name=cl type=hidden value="3" class="hidden">
+                      <input name=ct type=hidden class="hidden">
+                      <input name=si type=hidden value="51webgame.github.io" class="hidden">
+                    </div>
+                    <span class="input-group-btn">
+                      <input type="submit" value="百度搜索" class="btn green">
+                      <input name=s type="radio" class="hidden">
+                      <input name=s type="radio" checked class="hidden">
+                    </span>    
+                  </div>
+                </form>
+              </div>
+          </div>
+
           {% assign post_list = category[1] %}
           {% for node in post_list %}
             {% if node.title != null %}
@@ -47,4 +63,17 @@
       </div>
     {% endfor %}
     </div>
+    <SCRIPT language=javascript>
+              function g(formname)  {
+              var url = "http://www.baidu.com/baidu";
+              if (formname.s[1].checked) {
+                formname.ct.value = "2097152";
+              }
+              else {
+                formname.ct.value = "0";
+              }
+              formname.action = url;
+              return true;
+              }
+    </SCRIPT>
 </div>
