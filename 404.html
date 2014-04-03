@@ -1,1 +1,37 @@
-Sorry this page does not exist =(
+---
+layout: default
+title: "页面去哪了?"
+header: "404 NOT FOUND"
+---
+{% include JB/setup %}
+<link href="{{ ASSET_PATH }}/css/pages/error.css" rel="stylesheet" type="text/css"/>
+<div class="row">
+	<div class="col-md-12 page-404">
+		<div class="number">
+			404
+		</div>
+		<div class="details">
+			<h3>页面去哪儿了?</h3>
+			<p>
+				客官,你会唱小星星吗? .<br />
+				不会. <br />
+				那我来教你好了, "一闪一闪...."<br />
+				你真无聊, 找不到页面不会google吗?
+				<a href="{{ HOME_PATH }}">返回首页</a> 
+			</p>
+			<script>
+			  (function() {
+			    var cx = '007715345646328456703:khoj4i3gqn0';
+			    var gcse = document.createElement('script');
+			    gcse.type = 'text/javascript';
+			    gcse.async = true;
+			    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+			        '//www.google.com/cse/cse.js?cx=' + cx;
+			    var s = document.getElementsByTagName('script')[0];
+			    s.parentNode.insertBefore(gcse, s);
+			  })();
+			</script>
+			<gcse:searchbox-only></gcse:searchbox-only>
+		</div>
+	</div>
+</div>

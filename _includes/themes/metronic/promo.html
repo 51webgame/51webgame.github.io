@@ -27,7 +27,7 @@
 								{% if post.thumbnail %}
 						          <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
 						        {% else %}
-						          <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu1.jpg','kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						          <img src="{{ CDN_PATH }}/assets/resources/{% cycle 'kongfu1.jpg','kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
 						        {% endif %}
 								</a>
 							</div>
@@ -37,7 +37,7 @@
 								{% if post.thumbnail %}
 						          <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
 						        {% else %}
-						          <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu1.jpg','kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						          <img src="{{ CDN_PATH }}/assets/resources/{% cycle 'kongfu1.jpg','kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
 						        {% endif %}
 								</a>
 							</div>
@@ -101,7 +101,7 @@
 						{% if post.thumbnail %}
 						    <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
 						{% else %}
-						    <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						    <img src="{{ CDN_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
 						{% endif %}</a>
 					</div>
 					{% else %}
@@ -110,7 +110,7 @@
 						{% if post.thumbnail %}
 						    <img src="{{ post.thumbnail }}" class="img-responsive" alt="{{ post.title }}">
 						{% else %}
-						    <img src="{{ BASE_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
+						    <img src="{{ CDN_PATH }}/assets/resources/{% cycle 'kongfu2.jpg','kongfu3.jpg' %}" class="img-responsive" alt="{{ post.title }}">
 						{% endif %}</a>
 					</div>
 					<div class="col-md-6 margin-bottom-20">
