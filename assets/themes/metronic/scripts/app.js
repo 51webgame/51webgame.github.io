@@ -334,74 +334,6 @@ var App = function () {
         });
     }
 
-    // Handles sidebar toggler to close/hide the sidebar.
-    var handleSidebarToggler = function () {
-        var viewport = _getViewPort();
-        if ($.cookie('sidebar_closed') === '1' && viewport.width >= 992) {
-            $('body').addClass('page-sidebar-closed');
-        }
-
-        // handle sidebar show/hide
-        $('.page-sidebar, .header').on('click', '.sidebar-toggler', function (e) {
-            var body = $('body');
-            var sidebar = $('.page-sidebar');
-
-            if ((body.hasClass("page-sidebar-hover-on") && body.hasClass('page-sidebar-fixed')) || sidebar.hasClass('page-sidebar-hovering')) {
-                body.removeClass('page-sidebar-hover-on');
-                sidebar.css('width', '').hide().show();
-                $.cookie('sidebar_closed', '0');
-                e.stopPropagation();
-                runResponsiveHandlers();
-                return;
-            }
-
-            $(".sidebar-search", sidebar).removeClass("open");
-
-            if (body.hasClass("page-sidebar-closed")) {
-                body.removeClass("page-sidebar-closed");
-                if (body.hasClass('page-sidebar-fixed')) {
-                    sidebar.css('width', '');
-                }
-                $.cookie('sidebar_closed', '0');
-            } else {
-                body.addClass("page-sidebar-closed");
-                $.cookie('sidebar_closed', '1');
-            }
-            runResponsiveHandlers();
-        });
-
-        // handle the search bar close
-        $('.page-sidebar').on('click', '.sidebar-search .remove', function (e) {
-            e.preventDefault();
-            $('.sidebar-search').removeClass("open");
-        });
-
-        // handle the search query submit on enter press
-        $('.page-sidebar').on('keypress', '.sidebar-search input', function (e) {
-            if (e.which == 13) {
-                $('.sidebar-search').submit();
-                return false; //<---- Add this line
-            }
-        });
-
-        // handle the search submit
-        $('.sidebar-search .submit').on('click', function (e) {
-            e.preventDefault();
-            if ($('body').hasClass("page-sidebar-closed")) {
-                if ($('.sidebar-search').hasClass('open') == false) {
-                    if ($('.page-sidebar-fixed').size() === 1) {
-                        $('.page-sidebar .sidebar-toggler').click(); //trigger sidebar toggle button
-                    }
-                    $('.sidebar-search').addClass("open");
-                } else {
-                    $('.sidebar-search').submit();
-                }
-            } else {
-                $('.sidebar-search').submit();
-            }
-        });
-    }
-
     // Handles the horizontal menu
     var handleHorizontalMenu = function () {
         //handle hor menu search form toggler click
@@ -865,8 +797,7 @@ var App = function () {
             handleFixedSidebar(); // handles fixed sidebar menu
             handleFixedSidebarHoverable(); // handles fixed sidebar on hover effect 
             handleSidebarMenu(); // handles main menu
-            handleHorizontalMenu(); // handles horizontal menu
-            handleSidebarToggler(); // handles sidebar hide/show            
+            handleHorizontalMenu(); // handles horizontal menu          
             handleFixInputPlaceholderForIE(); // fixes/enables html5 placeholder attribute for IE9, IE8
             handleGoTop(); //handles scroll to top functionality in the footer
             handleTheme(); // handles style customer tool
