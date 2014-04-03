@@ -13,7 +13,7 @@
     {% else %}
         {% if idx == '5' %}
           <li class="dropdown">
-            <a href="javascript:void"  class="dropdown-toggle" data-toggle="dropdown">更多分类<i class="fa fa-angle-down"></i></a>
+            <a href="javascript:void"  class="dropdown-toggle" data-toggle="dropdown">更多标签<i class="fa fa-angle-down"></i></a>
               <ul class="dropdown-menu" role="menu">
         {% endif %}
                 <li><a href="#{{ tag[0] }}-ref" tabindex="-1" data-toggle="tab">{{ tag[0] | join: "/" }}</a></li>
@@ -25,10 +25,8 @@
     {% endfor %}
     </ul>
     <div class="tab-content">
-    {% assign idx = '0' %}
-    {% for tag in site.tags %} 
-      {% capture idx %}{{ idx | plus: '1' }}{% endcapture %}
-      {% if idx == '1' %}
+    {% for tag in site.tags %}
+      {% if forloop.first %}
       <div id="{{ tag[0] }}-ref" class="tab-pane in active">
       {% else %}
       <div id="{{ tag[0] }}-ref" class="tab-pane fade">
