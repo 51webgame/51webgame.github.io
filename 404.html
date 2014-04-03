@@ -13,27 +13,37 @@ header: "404 NOT FOUND"
 		<div class="details">
 			<h3>页面去哪儿了?</h3>
 			<p>
-				客官,你会唱小星星吗? .<br />
-				不会. <br />
-				那我来教你好了, "一闪一闪...."<br />
-				你真无聊, 找不到页面不会google吗?
+				客官,你会唱小星星吗? 不会. 那我来教你好了, "一闪一闪...."<br />
+				你真无聊, 找不到页面不会Baidu吗?
 				<a href="{{ HOME_PATH }}">返回首页</a> 
 			</p>
-		</div>
-		<div class="col-md-6 pull-right">
-				<script>
-				  (function() {
-				    var cx = '007715345646328456703:khoj4i3gqn0';
-				    var gcse = document.createElement('script');
-				    gcse.type = 'text/javascript';
-				    gcse.async = true;
-				    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-				        '//www.google.com/cse/cse.js?cx=' + cx;
-				    var s = document.getElementsByTagName('script')[0];
-				    s.parentNode.insertBefore(gcse, s);
-				  })();
-				</script>
-				<gcse:searchbox-only></gcse:searchbox-only>
+				<SCRIPT language=javascript>
+							function g(formname)	{
+							var url = "http://www.baidu.com/baidu";
+							if (formname.s[1].checked) {
+								formname.ct.value = "2097152";
+							}
+							else {
+								formname.ct.value = "0";
+							}
+							formname.action = url;
+							return true;
+							}
+				</SCRIPT>
+				<form name="f1" onsubmit="return g(this)">
+					<div class="input-group input-medium">
+						<input name=word size="30" maxlength="100" type="text" class="form-control" placeholder="keyword...">
+						<input name=tn type=hidden value="bds" class="hidden">
+						<input name=cl type=hidden value="3" class="hidden">
+						<input name=ct type=hidden class="hidden">
+						<input name=si type=hidden value="51webgame.github.io" class="hidden">
+						<span class="input-group-btn">
+						<input type="submit" value="百度搜索" class="btn blue">
+						<input name=s type="radio" class="hidden">
+						<input name=s type="radio" checked class="hidden">
+						</span>
+					</div>
+				</form>
 		</div>
 	</div>
 </div>
