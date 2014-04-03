@@ -46,7 +46,7 @@
     <div class="header-inner">
       <!-- BEGIN LOGO -->
       <a class="navbar-brand" href="{{ HOME_PATH }}">
-      <img src="{{ BASE_PATH }}/assets/resources/logo.png" alt="{{ site.title }}" class="img-responsive" />
+      <img src="{{ CDN_PATH }}/assets/resources/logo.png" alt="{{ site.title }}" class="img-responsive" />
       </a>
       <!-- END LOGO -->
       <!-- BEGIN HORIZANTAL MENU -->
@@ -96,6 +96,7 @@
     <div class="footer">
       <div class="footer-inner">
         2013 &copy; 51webgame.
+        {% include JB/analytics %}
       </div>
       <div class="footer-tools">
         <span class="go-top">
@@ -128,7 +129,5 @@
     });
   </script>
   <!-- END JAVASCRIPTS -->
-
-    {% include JB/analytics %}
   </body>
 </html>

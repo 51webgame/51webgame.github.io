@@ -6,7 +6,7 @@ weight: 1
 ---
 {% include JB/setup %}
 <div class="col-md-5 margin-bottom-20">
-  <a href="index.html"><img src="{{ BASE_PATH }}/assets/resources/jianke.jpg" alt="" class="img-responsive"></a>
+  <a href="index.html"><img src="{{ CDN_PATH }}/assets/resources/jianke.jpg" alt="" class="img-responsive"></a>
 </div>
 <div class="col-md-7">
 <h2>致关注本技术沙龙的伙伴们</h2>

@@ -29,12 +29,12 @@
               <div class="blog-tag-data">
                 <ul class="pager">
                   {% if page.previous %}
-                    <li class="previous"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; {{ page.previous.title }}</a></li>
+                    <li class="previous"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; 前一篇</a></li>
                   {% else %}
                     <li class="previous disabled"><a>&larr; 已经到顶啦~</a></li>
                   {% endif %}
                   {% if page.next %}
-                    <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }} &rarr;</a></li>
+                    <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">后一篇 &rarr;</a></li>
                   {% else %}
                     <li class="next disabled"><a>已经到底啦~ &rarr;</a>
                   {% endif %}
@@ -42,7 +42,7 @@
                 {% if page.thumbnail %}
                   <img src="{{ page.thumbnail }}" class="img-responsive" alt="{{ page.title }}">
                 {% else %}
-                  <img src="http://dummyimage.com/946x381/1d943b/ffffff&text={{ page.title }}" class="img-responsive" alt="{{ page.title }}">
+                  <a href="http://game.51.com/jjwx" target="_blank"><img src="{{ CDN_PATH }}/assets/resources/jjwx.jpg" class="img-responsive" alt="51街机武侠"></a>
                 {% endif %}
                 <div class="row">
                     <div class="col-md-6">
@@ -67,6 +67,7 @@
                 {{ content }}
               </div>
               <div class="post-comment">
+                {% assign post = page %}
                 {% include JB/comments %}
               </div>
             </div>
