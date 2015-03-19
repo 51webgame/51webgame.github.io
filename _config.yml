@@ -31,6 +31,9 @@ paginate_path: "/blog/page:num"
 
 excerpt_separator: <!--more-->
 
+#safe mode  in github pages when running jekyll will prefix "--safe" so the false will not work
+safe : false
+
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
 JB :
