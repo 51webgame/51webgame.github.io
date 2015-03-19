@@ -58,6 +58,7 @@
             {% capture paginate_path %}{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: "page:num",'' }}{% endcapture %}
             {% if page.url contains paginate_path  %}
             <li class="active open"><a href="{{ paginate_path }}" class="active">文章列表</a></li>
+            <!--{{ site.baseurl }} {{ paginate_path }} {{ page.url }}-->
             {% else %}
             <li><a href="{{ paginate_path }}">文章列表</a></li>
             {% endif %}
