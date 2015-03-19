@@ -72,6 +72,7 @@ JB :
   #   /assets
   #
   ASSET_PATH : false
+  IMAGE_PATH : false
 
   CDN_PATH : http://fiveonewebgame.qiniudn.com
   # These paths are to the main pages Jekyll-Bootstrap ships with.
